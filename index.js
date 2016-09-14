@@ -107,6 +107,6 @@ var server = net.createServer((serverSocket) => {
 
 });
 
-server.listen(12345);
+server.listen(options['server-port'], options['server-host']);
 
 
