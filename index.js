@@ -1,6 +1,3 @@
-// TODO: finish support for SSL
-// TODO: Host rewriting
-
 'use strict';
 
 const net = require('net');
@@ -8,7 +5,6 @@ const process = require('process');
 const tls = require('tls');
 const commandLineArgs = require('command-line-args');
 const getUsage = require('command-line-usage');
-var minimumTLSVersion = require('minimum-tls-version');
 const usage = require('./usage.js');
  
 const optionDefinitions = [
