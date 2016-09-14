@@ -1,0 +1,25 @@
+{
+  "name": "raw-http-capture",
+  "version": "0.0.1",
+  "description": "Capture raw HTTP requests.",
+  "main": "index.js",
+  "dependencies": {
+    "command-line-args": "^3.0.1",
+    "minimum-tls-version": "^0.0.3",
+    "command-line-usage": "^3.0.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/diolemo/raw-http-capture.git"
+  },
+  "author": "Jonathan Pike",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/diolemo/raw-http-capture/issues"
+  },
+  "homepage": "https://github.com/diolemo/raw-http-capture#readme"
+}
