@@ -34,21 +34,38 @@ var rewrite_host_header = function(line) {
 		(addCR ? '\r' : '');
 };
 
+var firstWrite = true;	
 var server = net.createServer((serverSocket) => {
-	
+
 	var clientSocket;
 	var setupHandlers = function() {
 
+		var clientDataStarted = false;
+		var serverDataStarted = false;
+
 		var onClientData = function(data) {
 
-			var lines = data.toString().split('\n');
-			for (let i = 0; i < lines.length; i++) 
-				process.stdout.write(' << ' + lines[i] + '\n');
-			serverSocket.write(lines.join('\n'));
+			if (!clientDataStarted) {
+				if (!firstWrite) 
+					process.stdout.write('\n');
+				clientDataStarted = true;
+				firstWrite = false;
+			}
+
+			var str = data.toString();
+			process.stdout.write(str);
+			serverSocket.write(str);
 
 		};
 
 		var onServerData = function(data) {
+
+			if (!serverDataStarted) {
+				if (!firstWrite) 
+					process.stdout.write('\n');
+				serverDataStarted = true;
+				firstWrite = false;
+			}
 
 			var lines = data.toString().split('\n');
 
@@ -59,9 +76,9 @@ var server = net.createServer((serverSocket) => {
 				}
 			}
 
-			for (let i = 0; i < lines.length; i++) 
-				process.stdout.write(' >> ' + lines[i] + '\n');
-			clientSocket.write(lines.join('\n'));
+			var str = lines.join('\n');
+			process.stdout.write(str);
+			clientSocket.write(str);
 
 		};
 
